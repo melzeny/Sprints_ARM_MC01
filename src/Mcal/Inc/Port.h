@@ -2,50 +2,102 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  Mcu_Hw.h
+ *         File:  Port.h
  *       Module:  -
  *
- *  Description:  Contains all MCU Registers Definitions     
+ *  Description:  <Write File DESCRIPTION here>     
  *  
  *********************************************************************************************************************/
-#ifndef MCU_HW_H
-#define MCU_HW_H
+#ifndef PORT_H
+#define PORT_H
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-
+#include "Std_Types.h"
+#include "Port_Cfg.h"
 
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define APINT            *((uint32*)0xE000ED0C)
-
-#define SYSCTR_BASE_ADDRESS              0x400FE000
-#define RCGCGPIO_OFFSET                  0x608
-
-#define RCGCGPIO                         *((volatile uint32*)(SYSCTR_BASE_ADDRESS+RCGCGPIO_OFFSET)
-
-#define GPIO_APB_BASE_ADDRESS_A          0x40004000
-#define GPIO_APB_BASE_ADDRESS_B          0x40005000
-#define GPIO_APB_BASE_ADDRESS_C          0x40006000
-#define GPIO_APB_BASE_ADDRESS_D          0x40007000
-#define GPIO_APB_BASE_ADDRESS_E          0x40024000
-#define GPIO_APB_BASE_ADDRESS_F          0x40025000
-
-#define GPIODIR_OFFSET			0x400
-
 
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
-#define GPIODIR(BaseAddr)            *((volatile uint32*)BaseAddr+GPIODIR_OFFSET) 
-
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
+typedef uint8 Port_PinType;
+#define Port_Pin_A0                 0
+#define Port_Pin_A1                 1
+#define Port_Pin_A2                 2
+#define Port_Pin_A3                 3
+#define Port_Pin_A4                 4
+#define Port_Pin_A5                 5
+#define Port_Pin_A6                 6
+#define Port_Pin_A7                 7
+
+
+#define Port_Pin_B0                 8
+#define Port_Pin_B1                 9
+#define Port_Pin_B2                 10
+#define Port_Pin_B3                 11
+#define Port_Pin_B4                 12
+#define Port_Pin_B5                 13
+#define Port_Pin_B6                 14
+#define Port_Pin_B7                 15
+/*TODO Complete Port Pin Range*/
+
+
+typedef enum
+{
+	PORT_PIN_IN,
+	PORT_PIN_OUT
+}Port_PinDirectionType;
+
+
+typedef uint8 Port_PinModeType;
+#define Port_PinMode_X_DIO           0
+#define Port_PinMode_PA0_U0RX        1
+#define Port_PinMode_PA1_U0TX        1
+#define Port_PinMode_PA2_SSI0Clk     2
+
+typedef enum
+{
+	PORT_ATTACH_DEFAULT,
+	PORT_ATTACH_PULLUP,
+	PORT_ATTACH_PULLDOWN,
+	PORT_ATTACH_OPENDRAIN	
+}Port_PinInternalAttachType;
+
+typedef enum 
+{
+	PORT_PIN_CURRENT_NA,
+	PORT_PIN_CURRENT_2m,
+	PORT_PIN_CURRENT_4m,
+	PORT_PIN_CURRENT_8m
+}Port_PinOutputCurrentType;
+
+typedef enum
+{
+	PORT_EXT_INT_DISABLE,
+	PORT_EXT_INT_RISING,
+	PORT_EXT_INT_FALLING,
+	PORT_EXT_INT_BOTH
+}Port_PinExternalIntType;
+typedef struct
+{
+    Port_PinType                pinId;
+	Port_PinDirectionType       pinDir;
+	Port_PinModeType            pinMode;
+	Port_PinOutputCurrentType   currentStrength;
+	Port_PinInternalAttachType  internalAttach;
+	Port_PinExternalIntType     externalInt;
+}Port_ConfigType;
+
+
 
 
 /**********************************************************************************************************************
@@ -56,11 +108,10 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-
+void Port_Init ( const Port_ConfigType* ConfigPtr ); 
  
-#endif  /* MCU_HW_H */
+#endif  /* FILE_NAME_H */
 
 /**********************************************************************************************************************
  *  END OF FILE: Std_Types.h
  *********************************************************************************************************************/
-

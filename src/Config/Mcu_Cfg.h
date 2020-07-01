@@ -1,0 +1,1 @@
+#define MCU_ACTIVATED_CLOCK_GATES_SIZE           5

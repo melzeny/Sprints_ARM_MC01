@@ -10,11 +10,11 @@
 */
 
 
-#define NVIC_GROUPING_SYSTEM             NVIC_GROUPING_SYSTEM_YYY
+#define NVIC_GROUPING_SYSTEM             NVIC_GROUPING_SYSTEM_XXY
 
 
 
-#define NVIC_ACTIVATED_INT_SIZE           3
+#define NVIC_ACTIVATED_INT_SIZE           5
 
 
 #endif

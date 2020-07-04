@@ -19,7 +19,13 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define APINT            *((uint32*)0xE000ED0C)
+/**************************************
+*   NVIC REGISTRE
+***************************************/
+#define NVIC_ENABLE_BASE_ADDRESS         0xE000E100
+#define NVIC_PRI_BASE_ADDRESS            0xE000E400
+
+#define APINT                            *((volatile uint32*)0xE000ED0C)
 
 #define SYSCTR_BASE_ADDRESS              0x400FE000
 #define RCGCGPIO_OFFSET                  0x608
@@ -40,7 +46,8 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
-#define GPIODIR(BaseAddr)            *((volatile uint32*)BaseAddr+GPIODIR_OFFSET) 
+#define GET_HWREG(BaseAddr,RegOffset)      *((volatile uint32*)(BaseAddr+RegOffset))
+#define GPIODIR(BaseAddr)                  *((volatile uint32*)BaseAddr+GPIODIR_OFFSET) 
 
 
 /**********************************************************************************************************************

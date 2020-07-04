@@ -27,9 +27,9 @@
  *********************************************************************************************************************/
 #define CPU_SWITCH_TO_PRIVMODE()        __asm("SVC #1")
 															
-#define CPU_SWITCH_TO_USERMODE()        __asm("MOV R0, 0x1\n");\
-                                        __asm("MSR CONTROL, R0\n")
-																				
+#define CPU_SWITCH_TO_USERMODE()        do{__asm("MOV R0, 0x1\n");\
+                                           __asm("MSR CONTROL, R0\n")}while(0);
+													
 #define CPU_DISABLE_ALL_INTERRUPTS()    __asm("CPSID i")																				
 #define CPU_ENABLE_ALL_INTERRUPTS()     __asm("CPSIE i")					
 														 

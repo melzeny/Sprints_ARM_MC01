@@ -2,11 +2,13 @@
 #include "Mcu.h"
 
 /* Configuartion file */
-#define MCU_CLOCK_GATE_GPIOA     00u
-#define MCU_CLOCK_GATE_GPIOB     01u
-#define MCU_CLOCK_GATE_GPIOE     04u
-#define MCU_CLOCK_GATE_UART0     30u
-#define MCU_CLOCK_GATE_SSI2      42u
+#define MCU_CLOCK_GATE_GPIOA     20u
+#define MCU_CLOCK_GATE_GPIOB     21u
+#define MCU_CLOCK_GATE_GPIOE     24u
+
+
+#define MCU_CLOCK_GATE_WD0       00u
+#define MCU_CLOCK_GATE_WD1       01u
 
 #define Mcu_Clock_0        0
 #define Mcu_Clock_1        1
@@ -18,8 +20,9 @@ uint8 Mcu_ActivatedClockGates[MCU_ACTIVATED_CLOCK_GATES_SIZE]=
 	MCU_CLOCK_GATE_GPIOA,
 	MCU_CLOCK_GATE_GPIOB,
 	MCU_CLOCK_GATE_GPIOE,
-	MCU_CLOCK_GATE_UART0,
-	MCU_CLOCK_GATE_SSI2
+	MCU_CLOCK_GATE_WD0
+
+	
 };
 
 const Mcu_ConfigType McuConfig[MCU_CLOCK_SETTINGS_SIZE]=

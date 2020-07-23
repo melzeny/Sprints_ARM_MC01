@@ -64,7 +64,7 @@ typedef union
 #define RCC                     (*((volatile RCC_TAG*)0x400FE060))
 #define RCC2                    (*((volatile RCC2_TAG*)0x400FE070))
 #define PLLSTAT                 *((volatile uint32*)0x400FE168)
-#define SYSCTR_RCG_BASE_ADDR    0x400FE608
+#define SYSCTR_RCG_BASE_ADDR    0x400FE600
 /**************************************
 *   GPIO REGISTRE
 ***************************************/
@@ -85,6 +85,12 @@ typedef union
 #define GET_HWREG(BaseAddr,RegOffset)      *((volatile uint32*)(BaseAddr+RegOffset))
 #define GPIODIR(BaseAddr)                  *((volatile uint32*)BaseAddr+GPIODIR_OFFSET) 
 
+#define BASE_ADDRESS_PRE                              0x40000000
+#define BASE_ADDRESS_PRE_ALIAS                        0x42000000
+
+#define GET_RegisterOffset(RegisterAddr)              ((RegisterAddr - BASE_ADDRESS_PRE)/4)
+#define GET_BitOffset(RegisterAddr,BitPos)            ((GET_RegisterOffset(RegisterAddr)*32) + BitPos)
+#define GET_BBAlIAS_PRE_REG(RegisterAddr, BitPos)     (*(volatile uint32*)((GET_BitOffset(RegisterAddr,BitPos)*4) + BASE_ADDRESS_PRE_ALIAS))
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
